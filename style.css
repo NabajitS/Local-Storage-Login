@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Montserrat;
+}
+
+.main{
+    height: 100vh;
+    width: 100%;
+    background: url(./quino-al-GASihZS_69E-unsplash.jpg);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.137);
+    height: 77vh;
+    width: 380px;
+    backdrop-filter: blur(6px);
+    border-radius: 26px;
+    /* background-color: aqua; */
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+
+    /* opacity: 1;
+    visibility: visible; */
+}
+
+
+
+.form-styling{
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    /* background-color: violet; */
+    text-align: center;
+    color: white;
+    font-weight: 550;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.form-styling label{
+    padding-top: 15px;
+    display: block;
+    margin-top: 29px;
+}
+
+.form-styling input{
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: transparent;
+    border-bottom: 1.5px solid white;
+    background: transparent;
+    width: 80%;
+    padding: 7px;
+    outline: none;
+}
+
+.form-styling button{
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: transparent;
+    padding: 6px 40px;
+    background-color: #2072dd;
+    color: white;
+    letter-spacing: 2px;
+}
+
+
+
+a{
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+    z-index: 3;
+    margin-left: 2rem;
+    color: black;
+    background-color: rgb(212, 16, 58);
+}
+
+.logout-btn{
+    position: absolute;
+    right: 0;
+    top: 30px;
+    /* display: none; */
+    z-index: 3;
+    color: black;
+    background-color: rgb(212, 16, 58);
+    display: none;
+}
+
+.create-account-form{
+    display:block;
+}
+
+.sign-in-form{
+    display: none;
+}
