@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,61 +8,67 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
 
-    <a href="#" class="create-account">Create Account</a>
-    <a href="#" class="sign-in">Sign In</a>
-    <p></p>
-
-  <main class="main">
-
-    <div class="container">
-
-        <form class = "create-account-form form-styling">
-            
-                <label for="sent">Create Account</label>
-            
-            
-            
-                <label for="username">UserName</label>
-                <input id = "create-username" type="text">
-            
-
-            
-                <label for="password">Password</label>
-                <input id = "create-password" type="password">
-            
-            
-                <button class = "submit-login" type="submit">Submit</button>
-
-           
-        </form>
-
-
-        <form class = "sign-in-form form-styling">
-            
-                <label for="sent">Sign IN</label>
-            
-            
-            
-                <label for="username">UserName</label>
-                <input id = "sign-in-username" type="text">
-            
-
-            
-                <label for="password">Password</label>
-                <input id = "sign-in-password" type="password">
-            
-
-            
-            <button class = "submit-login" type="submit">Submit</button>
-          
-
-        </form>
+    <div class="a-container">
+        <a href="#" class="create-account ">Create Account</a>
+        <a href="#" class="sign-in ">Sign In</a>
     </div>
 
-    <button class = "logout-btn">Log out</button>
-</main>  
+    <div class="intro-div">
+        <p class="intro-text">Welcome ! <br>
+            Create an account or sign in if account already exists. Your
+            acount credentials are saved on your browser's local storage. On Page reload
+            the if not logged out page will load with signed-in account as default.
+        </p>
+    </div>
+
+
+    <p id = "welcome-string"></p>
+
+    <main class="main">
+
+        <div class="container">
+
+            <form class="create-account-form form-styling">
+
+                <label for="sent">Create Account</label>
+
+                <label for="username">UserName</label>
+                <input id="create-username" type="text">
+
+                <label for="password">Password</label>
+                <input id="create-password" type="password">
+
+                <button class="submit-login" type="submit">Submit</button>
+
+
+            </form>
+
+
+            <form class="sign-in-form form-styling">
+
+                <label for="sent">Sign IN</label>
+
+                <label for="username">UserName</label>
+                <input id="sign-in-username" type="text">
+
+                <label for="password">Password</label>
+                <input id="sign-in-password" type="password">
+
+                <button class="submit-login" type="submit">Submit</button>
+
+            </form>
+        </div>
+
+
+    </main>
+
+    <button class="logout-btn">Log out</button>
+
+
     <script src="script.js"></script>
 </body>
+
 </html>

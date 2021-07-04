@@ -7,35 +7,37 @@
 }
 
 body{
-    font-family: Montserrat;
+    font-family: 'Montserrat';
 }
 
 .main{
     height: 100vh;
     width: 100%;
-    background: url(./quino-al-GASihZS_69E-unsplash.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.014), rgba(0, 0, 0, 0.02)), url(./back.jpg);
     background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .container{
-    height: 100vh;
-    background: rgba(255, 255, 255, 0.137);
+    background: rgba(150, 189, 233, 0.096);
     height: 77vh;
     width: 380px;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(7px);
     border-radius: 26px;
-    /* background-color: aqua; */
-    /* position: absolute;
-    top: 0;
-    left: 0; */
-
-    /* opacity: 1;
-    visibility: visible; */
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 7px 7px 60px rgb(24, 24, 24);
+    transition: opacity .5s ease, visibility .5s ease;
 }
 
+@media (max-width: 400px){
+    .container{
+        width: 95%;
+    }
+}
 
 
 .form-styling{
@@ -43,7 +45,6 @@ body{
     height: 80%;
     margin: 0 auto;
     margin-top: 50px;
-    /* background-color: violet; */
     text-align: center;
     color: white;
     font-weight: 550;
@@ -67,6 +68,7 @@ body{
     width: 80%;
     padding: 7px;
     outline: none;
+    color: white;
 }
 
 .form-styling button{
@@ -80,33 +82,64 @@ body{
     letter-spacing: 2px;
 }
 
-
-
 a{
-    display: inline-block;
     text-decoration: none;
-    position: relative;
+    background-color: #DFE0DF;
     z-index: 3;
-    margin-left: 2rem;
-    color: black;
-    background-color: rgb(212, 16, 58);
+    color: rgb(0, 0, 0);
+    padding: 2px 10px;
+    border-radius: 2px;
+}  
+
+.a-container{
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    width: 350px;
+    justify-content: space-evenly;
 }
+
+
+
 
 .logout-btn{
     position: absolute;
     right: 0;
     top: 30px;
-    /* display: none; */
+    display: none;
     z-index: 3;
     color: black;
     background-color: rgb(212, 16, 58);
-    display: none;
+
 }
 
 .create-account-form{
-    display:block;
+    display: none;
 }
 
 .sign-in-form{
     display: none;
+}
+
+
+.intro-div{
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-weight: 550;
+    font-size: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(10px);
+    background: rgba(150, 189, 233, 0.096);
+    box-shadow: 7px 7px 60px rgba(255, 255, 255, 0.178);
+    padding: 15px 20px;
+}
+
+.intro-text{
+    line-height: 30px;
+    letter-spacing: 2px;
 }

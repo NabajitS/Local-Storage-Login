@@ -1,8 +1,15 @@
+let main = document.querySelector('.main');
 let overlayContainer = document.querySelector('.container');
+let welcomeString = document.getElementById('welcome-string');
+let introDiv = document.querySelector('.intro-div');
+
 let createAccountBtn = document.querySelector('.create-account');
 let signInBtn = document.querySelector('.sign-in');
 
 let logoutBtn = document.querySelector('.logout-btn');
+
+
+window.addEventListener('load', check_if_loggedin);
 
 
 function opacityAndVisibility(opacity, visibility) {
@@ -10,25 +17,69 @@ function opacityAndVisibility(opacity, visibility) {
     overlayContainer.style.visibility = `${visibility}`;
 }
 
-// window.addEventListener('load', check_if_loggedin);
+
+
+logoutBtn.addEventListener('click', function () {
+    localStorage.setItem('loggedIn', 'false');
+    introDiv.style.display = 'block';
+    logoutButtonDisplay();
+})
+
 
 
 // To make the screen back to default and logout of the currently open account on logout button press
-function logoutButtonDisplay(username, password) {
-    opacityAndVisibility(1, 'visible');
+function logoutButtonDisplay() {
+    opacityAndVisibility(0, 'hidden');
+    main.style.opacity = '1';
+    main.style.visibility = 'visible'
+
+    welcomeString.textContent = '';
 
     document.querySelector(`.create-account-form`).style.display = 'none';
     document.querySelector(`.sign-in-form`).style.display = 'none';
 
-    username.value = password.value = '';
-    
+    let inputs = document.querySelectorAll('input');
+    inputs.forEach(function (input) {
+        input.value = '';
+    })
+
     logoutBtn.style.display = 'none';
+
+    signInBtn.style.display = createAccountBtn.style.display = 'inline';
+    
+}
+
+
+function check_if_loggedin() {
+    let n = localStorage.getItem('loggedIn');
+    console.log(n);
+    if (n == 'true') {
+        main.style.opacity = 0;
+        main.style.visibility = 'hidden';
+
+        introDiv.style.display = 'none';
+        signInBtn.style.display = createAccountBtn.style.display = 'none';
+
+
+        welcomeString.textContent = `Welcome Bro ${localStorage.getItem('currentLoggedUser')}`
+
+        logoutBtn.style.display = 'inline';
+        logoutBtn.addEventListener('click', function () {
+            logoutButtonDisplay();
+        })
+    }
+
+    if (n == 'false') {
+        main.style.opacity = 1;
+        main.style.visibility = 'visible';
+    }
 }
 
 
 
 
 createAccountBtn.addEventListener('click', function (e) {
+    logoutButtonDisplay();
     whichFormAndOverlay(e);
 })
 
@@ -42,14 +93,18 @@ document.querySelector('.create-account-form').addEventListener('submit', functi
 
     if (userName.value && passWord.value) {
 
-        opacityAndVisibility(0, 'hidden');
+        //TO keep track if user is logged in
+        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('currentLoggedUser', `${userName.value}`);
 
-        document.querySelector('p').textContent = 'Thanks For joining us ' + userName.value;
+        opacityAndVisibility(0, 'hidden');
+        main.style.opacity = '0';
+        main.style.visibility = 'hidden'
+
+        signInBtn.style.display = createAccountBtn.style.display = 'none';
+        welcomeString.textContent = 'Thanks For joining us ' + userName.value;
 
         logoutBtn.style.display = 'inline';
-        logoutBtn.addEventListener('click', function () {
-            logoutButtonDisplay(userName, passWord);
-        })
     }
 })
 
@@ -57,6 +112,7 @@ document.querySelector('.create-account-form').addEventListener('submit', functi
 
 
 signInBtn.addEventListener('click', function (e) {
+    logoutButtonDisplay();
     whichFormAndOverlay(e);
 })
 
@@ -77,18 +133,20 @@ function signInFunc(e) {
     let passWord = document.getElementById('sign-in-password');
 
     let takeUsername = checkUserExists(userName.value);
-    function forPassword() {
 
-        // name = takeUsername;
+    if (userName.value && passWord.value) {
+
         if (takeUsername && passWord.value == localStorage.getItem(takeUsername)) {
 
             opacityAndVisibility(0, 'hidden');
-            document.querySelector('p').textContent = `Welcome Bro ${takeUsername}`
-        }
-    }
+            main.style.opacity = '0';
+            main.style.visibility = 'hidden'
 
-    if (userName.value && passWord.value) {
-        forPassword();
+            welcomeString.textContent = `Welcome Bro ${takeUsername}`
+        
+
+        signInBtn.style.display = 'none';
+        createAccountBtn.style.display = 'none';
 
         //TO keep track if user is logged in
         localStorage.setItem('loggedIn', 'true');
@@ -96,71 +154,24 @@ function signInFunc(e) {
 
         //For the logout button
         logoutBtn.style.display = 'inline';
-        logoutBtn.addEventListener('click', function () {
-            logoutButtonDisplay(userName, passWord);
-        })
     }
+}
 }
 
 document.querySelector('.sign-in-form').addEventListener('submit', signInFunc)
 
 
-
-
-
-
-function check_if_loggedin() {
-    let n = localStorage.getItem('loggedIn');
-    console.log(n);
-    if (n == 'true') {
-        overlayContainer.style.opacity = 0;
-        overlayContainer.style.visibility = 'hidden';
-
-        document.querySelector('p').textContent = `Welcome Bro ${localStorage.getItem('currentLoggedUser')}`
-    }
-
-    if(n == 'false'){
-        overlayContainer.style.opacity = 1;
-        overlayContainer.style.visibility = 'visible';
-    }
-}
-
-
 //Selects which form to display based on click on either sign in or create account
+
 function whichFormAndOverlay(e) {
-    // overlayContainer.style.opacity = 1;
-    // overlayContainer.style.visibility = 'visible';
+    opacityAndVisibility(1, 'visible')
+
+    introDiv.style.display = 'none';
 
     let formSelect = e.target.classList.contains('create-account') ? 'create-account' : 'sign-in';
     document.querySelector(`.${formSelect}-form`).style.display = 'block';
 }
 
 
-
-
-
-
-
-// document.querySelector('.sign-in-form').addEventListener('submit', function (e) {
-//     e.preventDefault();
-
-//     let userName = document.getElementById('sign-in-username');
-//     let passWord = document.getElementById('sign-in-password');
-
-//     function forPassword() {
-//         let takeUsername = showId(userName.value);
-
-//         if (takeUsername && passWord.value == localStorage.getItem(takeUsername)) {
-//             overlayContainer.style.opacity = 0;
-//             overlayContainer.style.visibility = 'hidden';
-
-//             document.querySelector('p').textContent = `Welcome Back ${userName.value}`
-//         }
-//     }
-
-//     if (userName.value && passWord.value) {
-//         forPassword();
-//     }
-// })
 
 
